@@ -1,14 +1,70 @@
+//! # Barexp
+//!
+//! `barexp` is a library that automatically generates `mod.rs` files for your Rust project's subdirectories.
+//!
+//! ## Quick Start
+//!
+//! Add this to your `Cargo.toml`:
+//!
+//! ```toml
+//! [build-dependencies]
+//! barexp = "1.1.0"
+//! ```
+//!
+//! Then create a `build.rs` in your project root:
+//!
+//! ```rust
+//! fn main() {
+//!     barexp::build();
+//! }
+//! ```
+//!
+//! ## Examples
+//!
+//! Basic usage:
+//!
+//! ```rust
+//! // Your project's build.rs
+//! fn main() {
+//!     barexp::build();
+//! }
+//! ```
+//!
+//! ## Features
+//!
+//! - Recursively scans project subdirectories
+//! - Automatically generates `mod.rs` files
+//! - Re-exports all modules
+//! - Ignores hidden files and `target` directory
+
+
 use std::fs;
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
+/// Represents a Rust module in the file system
 #[derive(Debug)]
 struct Module {
     name: String,
     path: PathBuf,
     is_file: bool,
 }
-
+/// Optional function to generate mod.rs files for a given directory
+///
+/// This function is useful if you want to generate mod.rs files for a directory
+/// other than the default "src" directory.
+///
+/// # Arguments
+///
+/// * `src_dir` - The source directory to scan
+///
+/// # Examples
+///
+/// ```rust
+/// fn main() {
+///   barexp::generate_mod_files("src/services");
+/// }
+/// ```
 pub fn generate_mod_files(src_dir: &str) {
     println!("cargo:rerun-if-changed={}", src_dir);
 
@@ -29,6 +85,16 @@ pub fn generate_mod_files(src_dir: &str) {
     }
 }
 
+/// Internal function to check if a path is hidden
+///
+/// # Arguments
+///
+/// * `path` - The path to check
+///
+/// # Returns
+///
+/// * `true` if the path is hidden or is "target" directory
+/// * `false` otherwise
 fn is_hidden(path: &Path) -> bool {
     path.file_name()
         .and_then(|s| s.to_str())
@@ -117,6 +183,29 @@ fn generate_mod_rs(dir: &Path) {
     fs::write(mod_path, content).unwrap();
 }
 
+/// Main function to generate mod.rs files
+///
+/// This function scans the given directory and its subdirectories
+/// to automatically generate mod.rs files.
+///
+/// # Arguments
+///
+/// * `src_dir` - The source directory to scan, typically "src"
+///
+/// # Examples
+///
+/// ```rust
+/// fn main() {
+///     barexp::build();
+/// }
+/// ```
+///
+/// # Panics
+///
+/// Will panic if:
+/// * The source directory doesn't exist
+/// * File system operations fail
+/// * Permission errors occur
 pub fn build() {
     generate_mod_files("src");
 }
