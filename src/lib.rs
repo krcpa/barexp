@@ -116,3 +116,7 @@ fn generate_mod_rs(dir: &Path) {
     let mod_path = dir.join("mod.rs");
     fs::write(mod_path, content).unwrap();
 }
+
+pub fn build() {
+    generate_mod_files("src");
+}
