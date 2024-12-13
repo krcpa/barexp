@@ -171,9 +171,7 @@ cargo test -- --nocapture  # Run tests with output
 
 The test suite includes:
 - Unit tests
-- Integration tests
-- Compile-time tests (using trybuild)
-- Documentation tests
+- 
 
 ## License
 
