@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [build-dependencies]
-barexp = "1.0.0"
+barexp = "1.1.0"
 ```
 
 ## Usage
