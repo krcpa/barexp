@@ -1,4 +1,4 @@
-# Auto Mods
+# barexp
 
 Automatically generates `mod.rs` files for your Rust project's subdirectories. This crate simplifies module management by automatically creating and maintaining `mod.rs` files with proper module declarations and re-exports.
 
@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [build-dependencies]
-auto-mods = "0.1.0"
+barexp = "1.0.0"
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ auto-mods = "0.1.0"
 
 ```rust
 fn main() {
-    auto_mods::build();
+    barexp::build();
 }
 ```
 
