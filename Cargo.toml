@@ -1,15 +1,14 @@
 [package]
 name = "barexp"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
-description = "A Rust library providing elegant barrel exports with compile-time safety"
-license = "MIT"  # Choose a license
+description = "A Rust library that automatically generates mod.rs files for your project"
+license = "MIT"
 repository = "https://github.com/krcpa/barexp"
 documentation = "https://docs.rs/barexp"
 readme = "README.md"
-keywords = ["export", "barrel", "macro", "module"]
-categories = ["development-tools", "rust-patterns"]
-
+keywords = ["auto", "module", "mod", "generator", "export"]
+categories = ["development-tools", "rust-patterns", "filesystem"]
 
 [dependencies]
 inventory = "0.3.15"
