@@ -2,7 +2,18 @@
 name = "barexp"
 version = "0.1.0"
 edition = "2021"
+description = "A Rust library providing elegant barrel exports with compile-time safety"
+license = "MIT"  # Choose a license
+repository = "https://github.com/krcpa/barexp"
+documentation = "https://docs.rs/barexp"
+readme = "README.md"
+keywords = ["export", "barrel", "macro", "module"]
+categories = ["development-tools", "rust-patterns"]
+
 
 [dependencies]
-barexp-macros = { path = "./barexp-macros" }
+barexp-macros = { path = "./barexp-macros", version = "0.1.0" }
 inventory = "0.3.15"
+
+[workspace]
+members = ["barexp-macros"]
