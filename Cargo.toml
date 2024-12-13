@@ -1,0 +1,8 @@
+[package]
+name = "barexp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+barexp-macros = { path = "./barexp-macros" }
+inventory = "0.3.15"
